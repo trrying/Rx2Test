@@ -11,7 +11,7 @@ import io.reactivex.disposables.Disposable;
  * Created by owm on 2017/8/23.
  */
 
-public class BaseOperate1 {
+public class R1_BaseOperate {
 
     public static void observable() {
         Observable<String> observable = Observable.create(new ObservableOnSubscribe<String>() {

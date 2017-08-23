@@ -12,7 +12,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.owm.rx2test.rx.MapOperator3;
+import com.owm.rx2test.rx.R1_BaseOperate;
+import com.owm.rx2test.rx.R3_MapOperator;
+import com.owm.rx2test.rx.R2_ThreadOperator;
 
 import java.util.List;
 
@@ -33,10 +35,10 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                BaseOperate1.observable();
-//                ThreadOperator2.thread();
-//                ThreadOperator2.threadNet();
-                MapOperator3.map();
+//                R1_BaseOperate.observable();
+//                R2_ThreadOperator.thread();
+//                R2_ThreadOperator.threadNet();
+                R3_MapOperator.map();
 
             }
         });

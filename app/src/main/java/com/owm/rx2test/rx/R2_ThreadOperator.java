@@ -16,7 +16,7 @@ import io.reactivex.schedulers.Schedulers;
  * Created by owm on 2017/8/23.
  */
 
-public class ThreadOperator2 {
+public class R2_ThreadOperator {
 
     public static void thread() {
         Observable<String> observable = Observable.create(new ObservableOnSubscribe<String>() {

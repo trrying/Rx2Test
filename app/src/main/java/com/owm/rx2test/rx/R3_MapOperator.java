@@ -1,8 +1,13 @@
 package com.owm.rx2test.rx;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.ObservableSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
@@ -17,7 +22,7 @@ import io.reactivex.schedulers.Schedulers;
  * Created by owm on 2017/8/23.
  */
 
-public class MapOperator3 {
+public class R3_MapOperator {
 
     public static void map() {
 
@@ -47,17 +52,28 @@ public class MapOperator3 {
 
     public static void flatMap() {
 
-//        Observable.create(new ObservableOnSubscribe<Integer>() {
-//            public void subscribe(ObservableEmitter<Integer> emitter) {
-//                emitter.onNext(10086);
-//            }
-//        }).observeOn(Schedulers.io())
-//                .subscribeOn(AndroidSchedulers.mainThread())
-//                .flatMap(new Function<Integer, ObservableSource<String>>() {
-//                    public ObservableSource<String> apply(Integer value) {
-//
-//                    }
-//                })
+        Observable.create(new ObservableOnSubscribe<Integer>() {
+            public void subscribe(ObservableEmitter<Integer> emitter) {
+                emitter.onNext(10086);
+            }
+        })
+                .observeOn(Schedulers.io())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .flatMap(new Function<Integer, ObservableSource<String>>() {
+                    public ObservableSource<String> apply(Integer value) {
+                        List<String> list = new ArrayList<>();
+                        for (int i = 0; i < 3; i++) {
+                            list.add("post flatMap value : "+value);
+                        }
+                        return Observable.fromIterable(list).delay(10, TimeUnit.MILLISECONDS);
+                    }
+                })
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<String>() {
+                    public void accept(String value) {
+
+                    }
+                });
 
     }
 
